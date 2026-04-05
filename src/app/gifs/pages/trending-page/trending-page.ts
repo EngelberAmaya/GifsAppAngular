@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './trending-page.html',
   styleUrl: './trending-page.css',
 })
-export class TrendingPage {
+export default class TrendingPage {
 
 }
