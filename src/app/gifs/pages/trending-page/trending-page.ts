@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { GifsList } from '../../components/gifs-list/gifs-list';
+//import { GifsList } from '../../components/gifs-list/gifs-list';
 import { Gifs } from '../../services/gifs';
 
 @Component({
   selector: 'app-trending-page',
-  imports: [GifsList],
+  imports: [/*GifsList*/],
   templateUrl: './trending-page.html',
   styleUrl: './trending-page.css',
 })
