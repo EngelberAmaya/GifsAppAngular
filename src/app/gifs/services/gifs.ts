@@ -40,8 +40,8 @@ export class Gifs {
   }
 
   loadTrendingGifs(){
-
-    if (this.trendingGifsLoading()) return;
+    // Limitar a máximo 3 páginas
+    if (this.trendingGifsLoading() || this.trendingPage() >= 3) return;
 
     this.trendingGifsLoading.set(true);
 
