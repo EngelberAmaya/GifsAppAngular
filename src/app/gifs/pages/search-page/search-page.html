@@ -10,6 +10,18 @@
   >
 </section>
 
-<section class="py-5">
-  <app-gifs-list [gifs]="gifs()" />
-</section>
+@if (hasSearched()) {
+    <div class="py-5">
+      @if (gifs().length > 0) {
+        <app-gifs-list [gifs]="gifs()" />
+      } @else {
+        <div class="text-center text-gray-500 py-10">
+          No se encontraron resultados para tu búsqueda.
+        </div>
+      }
+    </div>
+} @else {
+    <div class="text-center text-gray-500 py-10">
+      Ingresa un término de búsqueda para encontrar tus gifs favoritos.
+    </div>
+}
