@@ -1,5 +1,10 @@
 # GifsApp
 
+Aplicacion en Angular que muestra un listado de gifs usando la api de giphy, la cual tiene un servicio de trending. Así como también un método para filtrar los gifs y su paginado de manera dinámica.
+
+An Angular application that displays a list of GIFs using the Giphy API, which includes a trending service. It also includes a method for filtering and dynamically paginating the GIFs.
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
 
 ## Development server

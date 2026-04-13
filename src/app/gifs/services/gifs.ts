@@ -70,6 +70,9 @@ export class Gifs {
       map(resp => GifMapper.mapGiphyItemsToGifsArray(resp.data)),
       // Historial
       tap((items) => {
+
+        if(items.length === 0) return;
+
         this.searchHistory.update((history) => ({
           ...history,
           [query.toLowerCase()]: items
