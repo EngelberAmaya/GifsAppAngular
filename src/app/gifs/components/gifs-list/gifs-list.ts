@@ -10,4 +10,7 @@ import { Gif } from '../../interfaces/gif';
 })
 export class GifsList {
   gifs = input.required<Gif[]>();
+  errorMessage = input<string | unknown | null>();
+  isEmpty = input.required<boolean>();
+  isLoading = input.required<boolean>();
 }

@@ -4,7 +4,7 @@ import { environment } from '@environments/environment';
 import type { GiphyResponse } from '../interfaces/giphy';
 import { Gif } from '../interfaces/gif';
 import { GifMapper } from '../mapper/gif.mapper';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, delay, map, Observable, tap, throwError } from 'rxjs';
 
 const GIF_KEY = 'gifSearchHistory';
 
@@ -56,6 +56,9 @@ export class Gifs {
       this.trendingGifs.update((currentGifs) => [...currentGifs, ...gifs]);
       this.trendingPage.update(page => page + 1);
       this.trendingGifsLoading.set(false);
+    }, error => {
+      console.log('Error fetching', error);
+      return throwError(() => new Error('No se pudo obtener los gifs trending'));
     })
   }
 
@@ -77,6 +80,11 @@ export class Gifs {
           ...history,
           [query.toLowerCase()]: items
         }))
+      }),
+      delay(1000),
+      catchError(error => {
+        console.log('Error fetching', error);
+        return throwError(() => new Error(`No se pudo obtener el gifs con ese nombre: ${query}`));
       })
     )
   }

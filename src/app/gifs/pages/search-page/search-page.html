@@ -1,27 +1,15 @@
 <h2 class="text-2xl font-bold mt-5">Buscar Gifs</h2>
 <h3 class="text-sm text-gray-500">Buscar gifs por nombre, descripción o tags</h3>
 
-<section class="flex flex-col gap-4">
-  <input type="text"
-    placeholder="Buscar Gifs"
-    class="mt-3 border border-gray-300 rounded-md p-2"
-    (keyup.enter)="onSearch(textSearch.value)"
-    #textSearch
-  >
-</section>
+<app-search-input
+  [placeholder]="'Buscar Gifs'"
+  (value)="query.set($event)"
+/>
 
-@if (hasSearched()) {
-    <div class="py-5">
-      @if (gifs().length > 0) {
-        <app-gifs-list [gifs]="gifs()" />
-      } @else {
-        <div class="text-center text-gray-500 py-10">
-          No se encontraron resultados para tu búsqueda.
-        </div>
-      }
-    </div>
-} @else {
-    <div class="text-center text-gray-500 py-10">
-      Ingresa un término de búsqueda para encontrar tus gifs favoritos.
-    </div>
-}
+
+<app-gifs-list
+  [gifs]="gifsResource.hasValue() ? gifsResource.value() : []"
+  [errorMessage]="gifsResource.error()"
+  [isEmpty]="query().trim().length > 0 && gifsResource.hasValue() && gifsResource.value().length === 0"
+  [isLoading]="gifsResource.isLoading()"
+/>
