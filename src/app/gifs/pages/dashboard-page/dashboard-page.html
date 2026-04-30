@@ -1,9 +1,34 @@
 <div class="bg-slate-100 overflow-y-scroll w-screen h-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white">
     <div class="flex flex-col relative">
 
-        <app-side-menu />
+        <button
+          type="button"
+          class="fixed top-4 right-4 z-30 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-white shadow-lg md:hidden"
+          (click)="toggleMenu()"
+          aria-label="Abrir menu"
+        >
+          @if (isMenuOpen()) {
+            <i class="fa-solid fa-xmark"></i>
+          } @else {
+            <i class="fa-solid fa-bars"></i>
+          }
+        </button>
 
-        <div class="ml-55 px-4 flex flex-col flex-1 h-full text-slate-800">
+        @if (isMenuOpen()) {
+          <button
+            type="button"
+            class="fixed inset-0 z-10 bg-black/50 md:hidden"
+            (click)="closeMenu()"
+            aria-label="Cerrar menu"
+          ></button>
+        }
+
+        <aside class="fixed left-0 top-0 z-20 h-screen transition-transform duration-300
+            md:translate-x-0 {{ isMenuOpen() ? 'translate-x-0' : '-translate-x-full' }}">
+          <app-side-menu />
+        </aside>
+
+        <div class="md:ml-55 px-4 flex flex-col flex-1 h-full text-slate-800">
           <router-outlet />
         </div>
     </div>

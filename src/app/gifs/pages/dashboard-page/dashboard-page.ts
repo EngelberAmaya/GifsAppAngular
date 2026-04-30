@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SideMenu } from '../../components/side-menu/side-menu';
 
@@ -9,5 +9,13 @@ import { SideMenu } from '../../components/side-menu/side-menu';
   styleUrl: './dashboard-page.css',
 })
 export default class DashboardPage {
+  isMenuOpen = signal(false);
 
+  toggleMenu() {
+    this.isMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  closeMenu() {
+    this.isMenuOpen.set(false);
+  }
 }
